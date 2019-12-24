@@ -1,9 +1,9 @@
 import {createStackNavigator} from 'react-navigation'
 
-// import Main from './pages/main'
 import Login from './pages/login'
 import Cadastrar from './pages/cadastrar-se'
 import LoginTelefone from './pages/loginTelefone'
+import Home from './pages/home'
 
 export default createStackNavigator({
     Login:{
@@ -17,5 +17,11 @@ export default createStackNavigator({
     },
     LoginTelefone:{
         screen: LoginTelefone
+    },
+    Home:{
+        screen: Home,
+        navigationOptions: {
+            header: null
+        }
     }
 })

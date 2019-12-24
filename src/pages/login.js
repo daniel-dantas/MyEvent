@@ -1,29 +1,35 @@
 import React, {useState} from "react";
 import Container from '../components/container'
 // React Native elements
-import Icon from 'react-native-vector-icons/FontAwesome'
 import {
     Input
 }from 'react-native-elements'
 
 import {Text, TextInput, StyleSheet, TouchableOpacity, View} from 'react-native'
-import firebase from "react-native-firebase";
-
+import User from '../services/users'
 export default (props) => {
 
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
-    const [isAuth, setIsAuth] = useState(false)
 
-    const login = async () => {
-        try {
-            const user = await firebase.auth().signInWithEmailAndPassword(email, senha)
-            setIsAuth(true)
-            alert(user)
-        } catch (error) {
-            alert(error)
+    
+    const login =  async () => {
+        if(email.length === 0 || senha === 0){
+            alert('Digite o email e a senha!')
+        }else{
+            const result =  await User.authEmailSenha(email, senha)
+            
+            if(result){
+                props.navigation.navigate('Home', {
+                    user: result
+                })
+            }else{
+                alert('Email e senha incorretos!')
+            }
         }
     }
+
+
 
     return (
         <Container>
