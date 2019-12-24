@@ -45,7 +45,7 @@ export default (props) => {
                 secureTextEntry={true}
             />
 
-            <TouchableOpacity style={styles.linkOutraForma} onPress={() => {}}>
+            <TouchableOpacity style={styles.linkOutraForma} onPress={() => {props.navigation.navigate('LoginTelefone')}}>
                 <Text style={styles.textLink}>Logar com telefone</Text>
             </TouchableOpacity>
 

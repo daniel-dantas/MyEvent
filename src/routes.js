@@ -3,6 +3,8 @@ import {createStackNavigator} from 'react-navigation'
 // import Main from './pages/main'
 import Login from './pages/login'
 import Cadastrar from './pages/cadastrar-se'
+import LoginTelefone from './pages/loginTelefone'
+
 export default createStackNavigator({
     Login:{
         screen: Login,
@@ -11,9 +13,9 @@ export default createStackNavigator({
         }
     },
     Cadastrar: {
-        screen: Cadastrar,
-        navigationOptions: {
-            
-        }
+        screen: Cadastrar
+    },
+    LoginTelefone:{
+        screen: LoginTelefone
     }
 })
