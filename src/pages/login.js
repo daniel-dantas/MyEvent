@@ -1,7 +1,15 @@
 import React, {useState} from "react";
-import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
+import Container from '../components/container'
+// React Native elements
+import Icon from 'react-native-vector-icons/FontAwesome'
+import {
+    Input
+}from 'react-native-elements'
+
+import {Text, TextInput, StyleSheet, TouchableOpacity, View} from 'react-native'
 import firebase from "react-native-firebase";
-export default () => {
+
+export default (props) => {
 
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
@@ -10,7 +18,6 @@ export default () => {
     const login = async () => {
         try {
             const user = await firebase.auth().signInWithEmailAndPassword(email, senha)
-            
             setIsAuth(true)
             alert(user)
         } catch (error) {
@@ -19,48 +26,48 @@ export default () => {
     }
 
     return (
-        <View style={styles.container}>
+        <Container>
             <Text style={styles.logo}>Login</Text>
             
-            <TextInput
-                style={styles.input}
+            <Input
                 placeholder="Digite o email"
                 value={email}
                 onChangeText={email => setEmail(email)}
+                inputContainerStyle={styles.input}
+                
             />
 
-            <TextInput
+            <Input
                 style={styles.input}
                 placeholder="Digite a senha"
                 onChangeText={senha => setSenha(senha)}
+                inputStyle={styles.input}
+                secureTextEntry={true}
             />
+
+            <TouchableOpacity style={styles.linkOutraForma} onPress={() => {}}>
+                <Text style={styles.textLink}>Logar com telefone</Text>
+            </TouchableOpacity>
 
             <TouchableOpacity style={styles.button} onPress={() => {login()}}>
                 <Text style={styles.buttonText}>Logar</Text>
             </TouchableOpacity>
-        </View>
+
+            <TouchableOpacity style={styles.linkCadastrar} onPress={() => {props.navigation.navigate('Cadastrar')}}>
+                <Text style={styles.textLink}>Cadastra-se</Text>
+            </TouchableOpacity>
+            
+        </Container>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 20
-    },
     logo:{
         marginBottom: 30,
         fontSize: 25
     },
     input: {
-        height: 45,
-        backgroundColor: '#FFF',
-        alignSelf: "stretch",
-        borderColor: '#EEE',
-        borderWidth: 1,
-        paddingHorizontal: 20,
-        marginBottom: 10,
+        paddingTop: 20,
     },
     button: {
         height: 45,
@@ -73,5 +80,25 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#FFF',
         fontWeight: 'bold'
+    },
+    linkOutraForma: {
+        height: 30,
+        alignSelf: "flex-start",
+        paddingHorizontal: 20,
+        paddingTop: 30,
+        paddingBottom: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    linkCadastrar: {
+        height: 30,
+        alignSelf: "center",
+        paddingHorizontal: 20,
+        paddingTop: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    textLink: {
+        color: '#069'
     }
 })
