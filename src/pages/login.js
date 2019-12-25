@@ -5,7 +5,7 @@ import {
     Input
 }from 'react-native-elements'
 
-import {Text, TextInput, StyleSheet, TouchableOpacity, View} from 'react-native'
+import {Text, StyleSheet, TouchableOpacity} from 'react-native'
 import User from '../services/users'
 export default (props) => {
 
@@ -17,14 +17,14 @@ export default (props) => {
         if(email.length === 0 || senha === 0){
             alert('Digite o email e a senha!')
         }else{
-            const result =  await User.authEmailSenha(email, senha)
-            
-            if(result){
-                props.navigation.navigate('Home', {
-                    user: result
+            try {
+                const user = await User.authEmailSenha(email, senha)
+                props.navigation.navigate('Logado', {
+                    user: user
                 })
-            }else{
-                alert('Email e senha incorretos!')
+
+            } catch (error) {
+                alert("Email ou senha incorretos")
             }
         }
     }
