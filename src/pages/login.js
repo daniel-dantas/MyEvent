@@ -13,19 +13,21 @@ export default (props) => {
     const [senha, setSenha] = useState('')
 
     
-    const login =  async () => {
-        if(email.length === 0 || senha === 0){
+    const login =   () => {
+        if(!(email.length === 0 || senha === 0)){
             alert('Digite o email e a senha!')
         }else{
-            try {
-                const user = await User.authEmailSenha(email, senha)
-                props.navigation.navigate('Logado', {
-                    user: user
-                })
+            props.navigation.navigate('Logado', {
+                user: {email, senha}
+            })
 
-            } catch (error) {
-                alert("Email ou senha incorretos")
-            }
+            // try {
+            //     const user = await User.authEmailSenha(email, senha)
+                
+
+            // } catch (error) {
+            //     alert("Email ou senha incorretos")
+            // }
         }
     }
 
@@ -60,7 +62,7 @@ export default (props) => {
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.linkCadastrar} onPress={() => {props.navigation.navigate('Cadastrar')}}>
-                <Text style={styles.textLink}>Cadastra-se</Text>
+                <Text style={styles.textLink}>Cadastrar-se</Text>
             </TouchableOpacity>
             
         </Container>
