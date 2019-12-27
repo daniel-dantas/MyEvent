@@ -9,7 +9,12 @@ export default {
             return false
         })
     },
+    
     createUser: (email, senha) => {
-         return firebase.auth().createUserWithEmailAndPassword(email,senha)
+         return firebase.auth().createUserWithEmailAndPassword(email,senha).then(user => {
+             return user
+         }).catch(erro => {
+             return false
+         })
     }
 }

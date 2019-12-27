@@ -11,15 +11,30 @@ import {
     View,
 } from 'react-native'
 
-export default () => {
+import User from '../services/users'
+
+export default (props) => {
     // States dos dados de cadastro
-    const [nome, setNome] = useState('')
-    const [cidade, setCidade] = useState('')
+   
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
-    const [telefone, setTelefone] = useState('')
 
+    const cadastro = async () => {
+        const user = await User.createUser(email,senha)
 
+        if(email.length === 0 || senha.length === 0){
+            alert('Digite o email e a senha!')
+        }else{
+            if(user){
+                props.navigation.navigate('Logado', {
+                    userEmail: user.user.email,
+                    userSenha: user.user.senha
+                })
+            }else{
+                alert('Usuario já cadastrado!')
+            }
+        }
+    }
 
     return (
         <Container>
@@ -28,30 +43,9 @@ export default () => {
             </Text>
             
             <Input 
-                placeholder="Digite seu nome"
-                value={nome}
-                onChangeText={nome => setNome(nome)}
-                inputStyle={styles.input}
-            />
-
-            <Input 
-                placeholder="Digite sua Cidade"
-                value={cidade}
-                onChangeText={cidade => setCidade(cidade)}
-                inputStyle={styles.input}
-            />
-
-            <Input 
                 placeholder="Digite seu email"
                 value={email}
                 onChangeText={email => setEmail(email)}
-                inputStyle={styles.input}
-            />
-
-            <Input 
-                placeholder="Digite sua telefone"
-                value={telefone}
-                onChangeText={telefone => setTelefone(telefone)}
                 inputStyle={styles.input}
             />
 
@@ -62,8 +56,9 @@ export default () => {
                 inputStyle={styles.input}
                 secureTextEntry={true}
             />
+
             <View style={styles.espaco}></View>
-            <TouchableOpacity style={styles.button} onPress={() => alert('cadastrado')}>
+            <TouchableOpacity style={styles.button} onPress={() => cadastro()}>
                 <Text style={styles.buttonText}>Cadastrar</Text>
             </TouchableOpacity>
         </Container>
