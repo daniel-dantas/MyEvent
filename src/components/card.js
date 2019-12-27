@@ -12,9 +12,9 @@ export default (props) => {
                 {props.description}
             </Text>
             <Button
-            icon={<Icon name='code' color='#ffffff' />}
+            icon={<Icon name='sc-telegram' color='#ffffff' type='evilicon'/>}
             buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-            title='VIEW NOW'/>
+            title={props.nameButton}/>
         </Card>
     )
 }

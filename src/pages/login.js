@@ -6,28 +6,28 @@ import {
 }from 'react-native-elements'
 
 import {Text, StyleSheet, TouchableOpacity} from 'react-native'
+
 import User from '../services/users'
+
 export default (props) => {
 
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
 
     
-    const login =   () => {
-        if(!(email.length === 0 || senha === 0)){
+    const login = async () => {
+        if(email.length === 0 || senha === 0){
             alert('Digite o email e a senha!')
         }else{
-            props.navigation.navigate('Logado', {
-                user: {email, senha}
-            })
-
-            // try {
-            //     const user = await User.authEmailSenha(email, senha)
-                
-
-            // } catch (error) {
-            //     alert("Email ou senha incorretos")
-            // }
+            const user = await User.authEmailSenha(email, senha)
+            if (user){
+                props.navigation.navigate('Logado', {
+                    userEmail: user.user.email,
+                    userSenha: user.user.senha
+                })
+            }else{
+                alert('Email ou senha incorretos!')
+            }
         }
     }
 

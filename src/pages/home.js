@@ -8,7 +8,7 @@ import {
     ScrollView
 } from 'react-native'
 
-export default () => {
+export default (props) => {
     
     const [eventos] = useState([
         {title: 'Daniel Lindo', description: 'Lindo mesmo esse menino'},
@@ -18,15 +18,17 @@ export default () => {
         {title: 'Daniel Lindo', description: 'Lindo mesmo esse menino'},
     ])
     
+    const [userEmail] = useState(JSON.stringify(props.navigation.getParam('userEmail', {})))
+
     return (
         <SafeAreaView style={styles.view}>
             <ScrollView>
                 <Text style={styles.title}>Eventos Proximos</Text>
-                
                 {eventos.map(evento => (
                     <Card 
                         title={evento.title}
                         description={evento.description}
+                        nameButton="Ver Evento"
                     />
                 ))}
             </ScrollView>
