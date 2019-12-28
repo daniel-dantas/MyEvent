@@ -14,7 +14,7 @@ import {
 
 import Card from '../components/card'
 
-export default () => {
+export default (props) => {
 
     const [eventos] = useState([
         {title: 'Daniel Lindo', description: 'Lindo mesmo esse menino'},
@@ -36,7 +36,9 @@ export default () => {
                     icon={
                         <Icon name='add' color='#ffffff' type='material'/>
                     }
-                    onPress={() => {}}
+                    onPress={() => {
+                        props.navigation.navigate('novoEvento')
+                    }}
                     containerStyle={styles.buttonAdicionar}
                 />
             </View>
