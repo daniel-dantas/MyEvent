@@ -1,5 +1,17 @@
 import React, {useState} from 'react'
-import {Text, StyleSheet, SafeAreaView, ScrollView} from 'react-native'
+import {
+    Text, 
+    StyleSheet, 
+    SafeAreaView, 
+    ScrollView,
+    View
+} from 'react-native'
+
+import {
+    Button,
+    Icon
+} from 'react-native-elements'
+
 import Card from '../components/card'
 
 export default () => {
@@ -16,8 +28,19 @@ export default () => {
 
     return (
         <SafeAreaView style={styles.view}>
-            <ScrollView>
-                <Text style={styles.title}>Meus Eventos</Text>
+            <View style={styles.title}>
+                <View style={styles.textContainer}>
+                    <Text style={styles.titleText}>Meus Eventos</Text>
+                </View>
+                <Button 
+                    icon={
+                        <Icon name='add' color='#ffffff' type='material'/>
+                    }
+                    onPress={() => {}}
+                    containerStyle={styles.buttonAdicionar}
+                />
+            </View>
+            <ScrollView style={styles.eventArea}>
                 {eventos.map(evento => (
                     <Card 
                         title={evento.title}
@@ -35,9 +58,23 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFF',
     },
+    eventArea: {
+        marginTop: 20
+    },
     title: {
+        alignItems: "stretch"
+    },
+    titleText: {
         margin: 30,
         marginBottom: 10,
-        fontSize: 20
+        fontSize: 20,
+    },
+    textContainer: {
+        alignItems: "flex-start"
+    },
+    buttonAdicionar: {
+        alignItems: "flex-end",
+        marginRight: 20,
+        marginTop: -40,
     }
 })

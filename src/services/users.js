@@ -16,5 +16,13 @@ export default {
          }).catch(erro => {
              return false
          })
+    },
+
+    authUserTelefone: (numero) => {
+        return firebase.auth().signInWithPhoneNumber(numero).then(user => {
+            return user
+        }).catch(erro => {
+            return false
+        })
     }
 }

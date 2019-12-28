@@ -5,8 +5,9 @@ import {
     Text,
     StyleSheet,
     SafeAreaView,
-    ScrollView
+    ScrollView,
 } from 'react-native'
+
 
 export default (props) => {
     
@@ -18,17 +19,18 @@ export default (props) => {
         {title: 'Daniel Lindo', description: 'Lindo mesmo esse menino'},
     ])
     
-    const [userEmail] = useState(JSON.stringify(props.navigation.getParam('userEmail', {})))
+    const [userEmail] = useState(JSON.stringify(props.navigation.getParam('userEmail', '')))
 
     return (
         <SafeAreaView style={styles.view}>
+            <Text style={styles.titleText}>Eventos Proximos</Text>
             <ScrollView>
-                <Text style={styles.title}>Eventos Proximos</Text>
                 {eventos.map(evento => (
                     <Card 
                         title={evento.title}
                         description={evento.description}
                         nameButton="Ver Evento"
+
                     />
                 ))}
             </ScrollView>
@@ -41,7 +43,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFF',
     },
-    title: {
+    titleText: {
         margin: 30,
         marginBottom: 10,
         fontSize: 20

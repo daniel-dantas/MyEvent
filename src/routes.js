@@ -8,6 +8,11 @@ import Home from './pages/home'
 import MeusEventos from './pages/meusEventos'
 import Perfil from './pages/perfil'
 
+const telasLogado = {
+    Home,
+    MeusEventos,
+    Perfil
+}
 
 export default createStackNavigator({
     Login:{
@@ -23,11 +28,7 @@ export default createStackNavigator({
         screen: LoginTelefone
     },
     Logado:{
-        screen: createBottomTabNavigator({
-            Home,
-            MeusEventos,
-            Perfil
-        }),
+        screen: createBottomTabNavigator(telasLogado),
         navigationOptions:{
             header: null
         }
