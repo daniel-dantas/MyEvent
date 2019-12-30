@@ -22,8 +22,7 @@ export default (props) => {
             const user = await User.authEmailSenha(email, senha)
             if (user){
                 props.navigation.navigate('Logado', {
-                    userEmail: user.user.email,
-                    userSenha: user.user.senha
+                    userEmail: user.user.email
                 })
             }else{
                 alert('Email ou senha incorretos!')

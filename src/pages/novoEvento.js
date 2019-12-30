@@ -1,5 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Container from '../components/container'
+
+import Evento from '../services/event'
 
 import {
     Text,
@@ -11,12 +13,51 @@ import {
     Button,
 } from 'react-native-elements'
 
-
-export default () => {
+// Novo Evento
+export default (props) => {
 
     const [nomeEvento, setNomeEvento] = useState('')
     const [descricaoEvento, setDescricaoEvento] = useState('')
     const [tipoEvento, setTipoEvento] = useState('')
+
+    const [userEmail, setUserEmail] = useState(JSON.stringify(props.navigation.getParam('userEmail', '')))
+
+    useEffect(() => {
+        corrigirEmail()
+    },[])
+
+    // Corrigindo má formação que o email ficou na passagem de telas
+    const corrigirEmail = () => {
+        let email = userEmail.split('\\')
+        email = email.slice(1,2)[0].split('"')[1]
+        setUserEmail(email)
+    }
+
+    const inserirEvento = async () => {
+        
+
+        if(nomeEvento.length === 0 || descricaoEvento.length === 0 || tipoEvento.length === 0){
+            alert('Preencha todos os campos')    
+        }else{
+            
+            const evento = await Evento.createEvent({
+                nome: nomeEvento,
+                descricao: descricaoEvento,
+                tipo: tipoEvento,
+                userEmail: userEmail
+            })
+
+            if(evento){
+                alert('Evento cadastrado com sucesso!')
+            }else{
+                alert('Erro ao cadastrar evento!')
+            }
+        }
+
+        
+
+
+    }
 
     return (
         <Container>
@@ -41,13 +82,14 @@ export default () => {
                 style={styles.input}
                 placeholder="Tipo de evento (Musica, Cinema, Balada.etc)"
                 value={tipoEvento}
-                onChangeText={tipoEvento => tipoEvento(tipoEvento)}
+                onChangeText={tipoEvento => setTipoEvento(tipoEvento)}
                 inputStyle={styles.input}
             />
 
             <Button 
                 title="Cadastrar Evento"
                 containerStyle={styles.button}
+                onPress={() => inserirEvento()}
             />
         </Container>
     )

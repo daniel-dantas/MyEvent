@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {
     Text, 
     StyleSheet, 
@@ -24,20 +24,23 @@ export default (props) => {
         {title: 'Daniel Lindo', description: 'Lindo mesmo esse menino'},
     ])
 
+    const [userEmail] = useState(JSON.stringify(props.navigation.getParam('userEmail', '')))
 
-
+    
     return (
         <SafeAreaView style={styles.view}>
             <View style={styles.title}>
                 <View style={styles.textContainer}>
-                    <Text style={styles.titleText}>Meus Eventos</Text>
+                <Text style={styles.titleText}>Meus Eventos</Text>
                 </View>
                 <Button 
                     icon={
                         <Icon name='add' color='#ffffff' type='material'/>
                     }
                     onPress={() => {
-                        props.navigation.navigate('novoEvento')
+                        props.navigation.navigate('novoEvento', {
+                            userEmail: userEmail
+                        })
                     }}
                     containerStyle={styles.buttonAdicionar}
                 />
