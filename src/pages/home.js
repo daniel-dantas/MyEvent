@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Card from '../components/card'
 
 import { 
@@ -6,34 +6,63 @@ import {
     StyleSheet,
     SafeAreaView,
     ScrollView,
+    View,
 } from 'react-native'
 
-
+import event from '../services/event'
+import Container from '../components/container'
 export default (props) => {
     
-    const [eventos] = useState([
-        {title: 'Daniel Lindo', description: 'Lindo mesmo esse menino'},
-        {title: 'Daniel Lindo', description: 'Lindo mesmo esse menino'},
-        {title: 'Daniel Lindo', description: 'Lindo mesmo esse menino'},
-        {title: 'Daniel Lindo', description: 'Lindo mesmo esse menino'},
-        {title: 'Daniel Lindo', description: 'Lindo mesmo esse menino'},
-    ])
+    const [eventos, setEventos] = useState([])
     
-    const [userEmail] = useState(JSON.stringify(props.navigation.getParam('userEmail', '')))
+    const [userId] = useState(JSON.stringify(props.navigation.getParam('userId', '')))
+
+    useEffect(() => {
+        carregarEventos()
+    }, [])
+    
+   
+
+    const carregarEventos = () => {
+        event.loadEvents().on('value', (snap) => {
+            let eventos = []
+
+            snap.forEach(item => {
+                eventos.push({
+                    title: item.val().nome,
+                    description: item.val().descricao,
+                    userId: item.val().userId
+                })
+            })
+            setEventos(eventos.filter(evento => {
+                return userId != `"${evento.userId}"`
+            }))
+        })
+    }
+
 
     return (
         <SafeAreaView style={styles.view}>
             <Text style={styles.titleText}>Eventos Proximos</Text>
-            <ScrollView>
-                {eventos.map(evento => (
-                    <Card 
-                        title={evento.title}
-                        description={evento.description}
-                        nameButton="Ver Evento"
-
-                    />
-                ))}
-            </ScrollView>
+                {(eventos.length === 0)  ? (
+                    <Container>
+                        <Text style={styles.textEventoProximo}>
+                            Nenhum evento proximo!
+                        </Text>
+                    </Container>
+                ) : (
+                    <ScrollView>
+                        {eventos.map(evento => (
+                            <Card 
+                                title={evento.title}
+                                description={evento.description}
+                                contact={evento.userId}
+                                nameButton="Ver Evento"
+        
+                            />
+                        ))}
+                    </ScrollView>
+                )}
         </SafeAreaView>
     )
 }
@@ -46,6 +75,9 @@ const styles = StyleSheet.create({
     titleText: {
         margin: 30,
         marginBottom: 10,
+        fontSize: 20
+    },
+    textEventoProximo: {
         fontSize: 20
     }
 })

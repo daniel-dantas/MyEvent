@@ -11,6 +11,9 @@ export default (props) => {
             <Text style={{marginBottom: 10}}>
                 {props.description}
             </Text>
+            <Text style={{marginBottom: 10}}>
+                Contato: {props.contact}
+            </Text>
             <Button
             icon={<Icon name='sc-telegram' color='#ffffff' type='evilicon'/>}
             buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}

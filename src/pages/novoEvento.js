@@ -20,17 +20,17 @@ export default (props) => {
     const [descricaoEvento, setDescricaoEvento] = useState('')
     const [tipoEvento, setTipoEvento] = useState('')
 
-    const [userEmail, setUserEmail] = useState(JSON.stringify(props.navigation.getParam('userEmail', '')))
+    const [userId, setUserId] = useState(JSON.stringify(props.navigation.getParam('userId', '')))
 
     useEffect(() => {
-        corrigirEmail()
+        corrigirUserId()
     },[])
 
     // Corrigindo má formação que o email ficou na passagem de telas
-    const corrigirEmail = () => {
-        let email = userEmail.split('\\')
+    const corrigirUserId = () => {
+        let email = userId.split('\\')
         email = email.slice(1,2)[0].split('"')[1]
-        setUserEmail(email)
+        setUserId(email)
     }
 
     const inserirEvento = async () => {
@@ -44,7 +44,7 @@ export default (props) => {
                 nome: nomeEvento,
                 descricao: descricaoEvento,
                 tipo: tipoEvento,
-                userEmail: userEmail
+                userId: userId
             })
 
             if(evento){

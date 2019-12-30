@@ -5,13 +5,14 @@ import firebase from 'react-native-firebase'
 
 export default {
     createEvent: (event) => {
-        return firebase.database().ref(`event/${new Date+event.nome}`).set(event).then(user => {
+        return firebase.database().ref().child('event').push(event).then(user => {
             return true
         }).catch(erro => {
             return false
         })
     },
-    loadEventsForUser: (id) => {
+    loadEvents: (id) => {
         
+        return firebase.database().ref('event')
     }
 }
