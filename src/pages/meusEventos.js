@@ -37,6 +37,7 @@ export default (props) => {
                 eventos.push({
                     title: item.val().nome,
                     description: item.val().descricao,
+                    typeEvent: item.val().tipo,
                     userId: item.val().userId
                 })
             })
@@ -72,6 +73,7 @@ export default (props) => {
                         title={evento.title}
                         description={evento.description}
                         contact={evento.userId}
+                        typeEvent={evento.typeEvent}
                         nameButton="Ver Evento"
                     />
                 ))}

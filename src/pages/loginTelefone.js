@@ -18,23 +18,34 @@ export default (props) => {
     // O objeto que verufificação do numero retorna
     const [confirmCode, setConfirmCode] = useState({})
     
+    
 
     const authenticNumber = async () => {
-        const confirmCode = await User.authUserTelefone(telefone)
+
+        if((telefone.length != 0)){
+            const confirmCode = await User.authUserTelefone(`+55${telefone}`)
         
-        if(confirmCode){
-            setFoneConfirm(true)
-            setConfirmCode(confirmCode)
+            if(confirmCode){
+                setFoneConfirm(true)
+                setConfirmCode(confirmCode)
+            }else{
+                alert('Telefone mal formatado, certifique se de que colocou todo o numero correto!')
+            }    
         }else{
-            alert(confirmCode)
+            alert('Digite o telefone!')
         }
+
+        
     }
 
     const verifyCode = async () => {
         await confirmCode.confirm(verificationCode).then(user => {
-            console.log(user)
+            props.navigation.navigate('Logado', {
+                userId: user.phoneNumber,
+                tipoLogin:'telefone'
+            })
         }).catch(erro => {
-            console.log(erro)
+            alert('Codigo de verificação incorreto')
         })
     } 
 

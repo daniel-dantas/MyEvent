@@ -16,6 +16,7 @@ import {
 // Novo Evento
 export default (props) => {
 
+    
     const [nomeEvento, setNomeEvento] = useState('')
     const [descricaoEvento, setDescricaoEvento] = useState('')
     const [tipoEvento, setTipoEvento] = useState('')

@@ -1,11 +1,34 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {Text, StyleSheet} from 'react-native'
 import {Card, Button, Icon } from 'react-native-elements'
 
 export default (props) => {
+
+    const [image, setImage] = useState(require('../assets/Outros.jpeg'))
+
+    useEffect(() => {
+        loadImage()
+    }, [])
+
+    const loadImage = () => {
+        const tipo = props.typeEvent.toLowerCase()
+
+        if(tipo === 'musica'){
+            setImage(require('../assets/Musica.jpg'))
+        }else if (tipo === 'cinema'){
+            setImage(require('../assets/Cinema.jpg'))
+        }else if (tipo === 'cerimonia'){
+            setImage(require('../assets/Cerimonia.jpg'))
+        }else if (tipo === 'balada'){
+            setImage(require('../assets/Balada.jpg'))
+        }else{
+            setImage(require('../assets/Outros.jpeg'))
+        }
+    }
+
     return (
         <Card
-            image={require('../assets/images.jpeg')}
+            image={image}
             >
             <Text style={styles.title}>{props.title}</Text>
             <Text style={{marginBottom: 10}}>

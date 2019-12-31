@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import Card from '../components/card'
 
+
+
 import { 
     Text,
     StyleSheet,
@@ -31,6 +33,7 @@ export default (props) => {
                 eventos.push({
                     title: item.val().nome,
                     description: item.val().descricao,
+                    typeEvent: item.val().tipo,
                     userId: item.val().userId
                 })
             })
@@ -58,7 +61,7 @@ export default (props) => {
                                 description={evento.description}
                                 contact={evento.userId}
                                 nameButton="Ver Evento"
-        
+                                typeEvent={evento.typeEvent}
                             />
                         ))}
                     </ScrollView>
