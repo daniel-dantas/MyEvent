@@ -19,10 +19,10 @@ export default {
     },
 
     authUserTelefone: (numero) => {
-        return firebase.auth().signInWithPhoneNumber(numero).then(user => {
-            return user
+        return firebase.auth().signInWithPhoneNumber(numero).then(confirmResult => {
+            return confirmResult
         }).catch(erro => {
-            return false
+            return erro
         })
     }
 }
