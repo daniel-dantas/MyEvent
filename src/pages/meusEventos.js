@@ -73,7 +73,8 @@ export default (props) => {
             {(eventos.length != 0) ? (
                 <ScrollView style={styles.eventArea}>
                     {eventos.map(evento => (
-                        <Card 
+                        <Card
+                            key={evento.itemKey}
                             itemKey={evento.itemKey}
                             title={evento.title}
                             description={evento.description}

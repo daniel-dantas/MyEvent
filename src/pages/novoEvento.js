@@ -50,6 +50,7 @@ export default (props) => {
 
             if(evento){
                 alert('Evento cadastrado com sucesso!')
+                props.navigation.navigate('Logado')
             }else{
                 alert('Erro ao cadastrar evento!')
             }
