@@ -13,6 +13,7 @@ import {
 } from 'react-native-elements'
 
 import Card from '../components/card'
+import Container from '../components/container'
 
 import event from '../services/event'
 
@@ -20,14 +21,13 @@ export default (props) => {
 
     const [eventos, setEventos] = useState([])
 
-    const [userId, setUserId] = useState(JSON.stringify(props.navigation.getParam('userId', '')))
+    const [userId] = useState(JSON.stringify(props.navigation.getParam('userId', '')))
     const [tipoLogin] = useState(JSON.stringify(props.navigation.getParam('tipoLogin', '')))
     
     useEffect(() => {
         carregarEventos()
     }, [])
     
-   
 
     const carregarEventos = () => {
         event.loadEvents().on('value', (snap) => {
@@ -35,11 +35,13 @@ export default (props) => {
 
             snap.forEach(item => {
                 eventos.push({
+                    itemKey: item.key,
                     title: item.val().nome,
                     description: item.val().descricao,
                     typeEvent: item.val().tipo,
                     userId: item.val().userId
                 })
+                
             })
 
             setEventos(eventos.filter(evento => {
@@ -67,17 +69,28 @@ export default (props) => {
                     containerStyle={styles.buttonAdicionar}
                 />
             </View>
-            <ScrollView style={styles.eventArea}>
-                {eventos.map(evento => (
-                    <Card 
-                        title={evento.title}
-                        description={evento.description}
-                        contact={evento.userId}
-                        typeEvent={evento.typeEvent}
-                        nameButton="Ver Evento"
-                    />
-                ))}
-            </ScrollView>
+            
+            {(eventos.length != 0) ? (
+                <ScrollView style={styles.eventArea}>
+                    {eventos.map(evento => (
+                        <Card 
+                            itemKey={evento.itemKey}
+                            title={evento.title}
+                            description={evento.description}
+                            contact={evento.userId}
+                            typeEvent={evento.typeEvent}
+                            nameButton="Ver Evento"
+                            isAdmin={true}
+                        />
+                    ))}
+                </ScrollView>
+            ): (
+                <Container>
+                    <Text style={styles.nenhumEvento}>Nenhum evento cadastrado ainda!</Text>
+                </Container>
+            )}
+
+            
         </SafeAreaView>
     )
 }
@@ -105,5 +118,8 @@ const styles = StyleSheet.create({
         alignItems: "flex-end",
         marginRight: 20,
         marginTop: -40,
+    },
+    nenhumEvento: {
+        fontSize: 20
     }
 })

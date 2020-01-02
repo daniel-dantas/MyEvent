@@ -11,8 +11,11 @@ export default {
             return false
         })
     },
-    loadEvents: (id) => {
+    loadEvents: () => {
         
         return firebase.database().ref('event')
+    },
+    deleteEvents: (key) => {
+        return firebase.database().ref(`event/${key}`).remove()
     }
 }

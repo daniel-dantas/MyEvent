@@ -31,6 +31,7 @@ export default (props) => {
 
             snap.forEach(item => {
                 eventos.push({
+                    key: item.key,
                     title: item.val().nome,
                     description: item.val().descricao,
                     typeEvent: item.val().tipo,
@@ -57,11 +58,13 @@ export default (props) => {
                     <ScrollView>
                         {eventos.map(evento => (
                             <Card 
+                                key={evento.key}
                                 title={evento.title}
                                 description={evento.description}
                                 contact={evento.userId}
                                 nameButton="Ver Evento"
                                 typeEvent={evento.typeEvent}
+                                isAdmin={false}
                             />
                         ))}
                     </ScrollView>

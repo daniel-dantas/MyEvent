@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import {Text, StyleSheet} from 'react-native'
+import {Text, StyleSheet, View} from 'react-native'
 import {Card, Button, Icon } from 'react-native-elements'
+import event from '../services/event'
 
 export default (props) => {
 
@@ -9,6 +10,12 @@ export default (props) => {
     useEffect(() => {
         loadImage()
     }, [])
+
+    const excluirEvento = () => {
+        event.deleteEvents(props.itemKey).then(confirm => {
+            alert('Evento excluido com sucesso!')
+        })
+    }
 
     const loadImage = () => {
         const tipo = props.typeEvent.toLowerCase()
@@ -41,6 +48,16 @@ export default (props) => {
             icon={<Icon name='sc-telegram' color='#ffffff' type='evilicon'/>}
             buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
             title={props.nameButton}/>
+            <View style={styles.espaco}></View>
+            {(props.isAdmin) ? (
+                <Button
+                icon={<Icon name='delete' color='#ffffff' type='material'/>}
+                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+                title="Excluir"
+                onPress={() => excluirEvento()}
+                />
+            ) : (<View></View>)}
+            
         </Card>
     )
 }
@@ -48,5 +65,8 @@ export default (props) => {
 const styles = StyleSheet.create({
     title: {
         fontSize: 23
+    },
+    espaco: {
+        paddingTop: 10
     }
 })
