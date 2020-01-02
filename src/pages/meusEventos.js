@@ -54,7 +54,7 @@ export default (props) => {
         <SafeAreaView style={styles.view}>
             <View style={styles.title}>
                 <View style={styles.textContainer}>
-                <Text style={styles.titleText}>Meus Eventos</Text>
+                    <Text style={styles.titleText}>Meus Eventos</Text>
                 </View>
                 <Button 
                     icon={

@@ -24,13 +24,15 @@ export default (props) => {
 
         if((telefone.length != 0)){
             const confirmCode = await User.authUserTelefone(`+55${telefone}`)
-        
-            if(confirmCode){
-                setFoneConfirm(true)
-                setConfirmCode(confirmCode)
-            }else{
-                alert('Telefone mal formatado, certifique se de que colocou todo o numero correto!')
-            }    
+
+            alert(confirmCode)
+
+            // if(confirmCode){
+            //     setFoneConfirm(true)
+            //     setConfirmCode(confirmCode)
+            // }else{
+            //     alert('Telefone mal formatado, certifique se de que colocou todo o numero correto!')
+            // }    
         }else{
             alert('Digite o telefone!')
         }

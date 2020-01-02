@@ -6,16 +6,15 @@ import Cadastrar from './pages/cadastrar-se'
 import LoginTelefone from './pages/loginTelefone'
 import Home from './pages/home'
 import MeusEventos from './pages/meusEventos'
-import Perfil from './pages/perfil'
 import NovoEvento from './pages/novoEvento'
 
 const telasLogado = {
     Home,
-    MeusEventos,
-    Perfil
+    MeusEventos
 }
 
 export default createStackNavigator({
+    
     Login:{
         screen: Login,
         navigationOptions: {

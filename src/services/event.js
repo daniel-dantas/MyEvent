@@ -2,6 +2,7 @@ import './inicializeApp'
 
 import firebase from 'react-native-firebase'
 
+// firebase.app()
 
 export default {
     createEvent: (event) => {

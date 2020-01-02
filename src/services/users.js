@@ -1,8 +1,10 @@
 import  './inicializeApp'
 import firebase from "react-native-firebase";
 
+// firebase.app()
 export default {
     authEmailSenha:  (email, senha) => {
+        
         return firebase.auth().signInWithEmailAndPassword(email, senha).then(user => {
             return user
         }).catch(erro => {
@@ -24,5 +26,7 @@ export default {
         }).catch(erro => {
             return erro
         })
-    }
+    },
+
+    
 }

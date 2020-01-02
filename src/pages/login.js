@@ -21,6 +21,8 @@ export default (props) => {
         }else{
             const user = await User.authEmailSenha(email, senha)
             if (user){
+                setEmail('')
+                setSenha('')
                 props.navigation.navigate('Logado', {
                     userId: user.user.email,
                     tipoLogin: 'email'
