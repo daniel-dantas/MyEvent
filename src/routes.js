@@ -1,4 +1,8 @@
-import {createStackNavigator, createBottomTabNavigator} from 'react-navigation'
+import {
+    createStackNavigator,
+    createBottomTabNavigator
+    }
+from 'react-navigation'
 
 // Pages do APP
 import Login from './pages/login'
@@ -7,6 +11,8 @@ import LoginTelefone from './pages/loginTelefone'
 import Home from './pages/home'
 import MeusEventos from './pages/meusEventos'
 import NovoEvento from './pages/novoEvento'
+import ViewEvent from './pages/viewEvent'
+import PageTeste from './pages/pageTeste'
 
 const telasLogado = {
     Home,
@@ -14,7 +20,12 @@ const telasLogado = {
 }
 
 export default createStackNavigator({
-    
+    // PageTeste: {
+    //     screen: PageTeste,
+    //     navigationOptions:{
+    //         header: null
+    //     }
+    // },
     Login:{
         screen: Login,
         navigationOptions: {
@@ -35,5 +46,9 @@ export default createStackNavigator({
     },
     novoEvento:{
         screen: NovoEvento
+    },
+    ViewEvent: {
+        screen: ViewEvent,
+        header: null
     }
 })

@@ -9,6 +9,7 @@ import {
     View,
 } from 'react-native'
 
+
 import {
     Button,
     Icon
@@ -16,18 +17,37 @@ import {
 
 import event from '../services/event'
 import Container from '../components/container'
+import Geolocation from '@react-native-community/geolocation'
 
 export default (props) => {
     
     const [eventos, setEventos] = useState([])
-    
+    const [location, setLocation] = useState({
+        latitude: '',
+        longitude: ''
+    })
     const [userId] = useState(JSON.stringify(props.navigation.getParam('userId', '')))
 
     useEffect(() => {
+        getLocation()
         carregarEventos()
     }, [])
     
-   
+   const getLocation = async() => {
+        await Geolocation.getCurrentPosition((position) => {
+            let newOrigin = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            };
+            
+            setLocation(newOrigin);
+
+        }, (err) => {
+            console.log('error');
+            console.log(err)
+
+        })
+    }
 
     const carregarEventos = () => {
         event.loadEvents().on('value', (snap) => {
