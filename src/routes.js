@@ -12,7 +12,6 @@ import Home from './pages/home'
 import MeusEventos from './pages/meusEventos'
 import NovoEvento from './pages/novoEvento'
 import ViewEvent from './pages/viewEvent'
-import PageTeste from './pages/pageTeste'
 
 const telasLogado = {
     Home,
@@ -20,12 +19,6 @@ const telasLogado = {
 }
 
 export default createStackNavigator({
-    // PageTeste: {
-    //     screen: PageTeste,
-    //     navigationOptions:{
-    //         header: null
-    //     }
-    // },
     Login:{
         screen: Login,
         navigationOptions: {

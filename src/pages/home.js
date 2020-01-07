@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Card from '../components/card'
-
+import MapView, {Marker} from 'react-native-maps'
+import Map from '../components/map'
 import { 
     Text,
     StyleSheet,
@@ -23,23 +24,30 @@ export default (props) => {
     
     const [eventos, setEventos] = useState([])
     const [location, setLocation] = useState({
-        latitude: '',
-        longitude: ''
+        latitude: 0,
+        longitude: 0,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
     })
     const [userId] = useState(JSON.stringify(props.navigation.getParam('userId', '')))
 
     useEffect(() => {
         getLocation()
         carregarEventos()
+        console.log(location)
     }, [])
     
    const getLocation = async() => {
         await Geolocation.getCurrentPosition((position) => {
             let newOrigin = {
                 latitude: position.coords.latitude,
-                longitude: position.coords.longitude
+                longitude: position.coords.longitude,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
             };
             
+            console.log(newOrigin)
+
             setLocation(newOrigin);
 
         }, (err) => {
@@ -87,11 +95,21 @@ export default (props) => {
                 
             </View>
                 {(eventos.length === 0)  ? (
-                    <Container>
-                        <Text style={styles.textEventoProximo}>
+                    <View>
+                        <Map 
+                            initialLocation={location}
+                            events={[{nome: 'Arromba', descricao: 'descricao evento', userId:userId, location: location}]}
+                        />
+                        
+                        {/* <MapView
+                            initialRegion={location}
+                        >
+                            
+                        </MapView> */}
+                        {/* <Text style={styles.textEventoProximo}>
                             Nenhum evento proximo!
-                        </Text>
-                    </Container>
+                        </Text> */}
+                    </View>
                 ) : (
                     <ScrollView>
                         {eventos.map(evento => (
