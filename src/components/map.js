@@ -167,26 +167,28 @@ export default class MapScreen extends Component {
             <View>
 
                 {(this.props.type != "addEvent") ? (
+                    // Mapa renderizado para visualização de eventos cadastrados
                     <MapView
-      
-                    ref={map => this.mapView = map}
-                    style={styles.map}
-                    style={{height: this.props.height}}
-                    region={{
-                      latitude: this.props.initialLocation.latitude,
-                      longitude: this.props.initialLocation.longitude,
-                      latitudeDelta: Math.abs(this.state.origin.latitude) * .0002,
-                      longitudeDelta: Math.abs(this.state.origin.longitude) * .0002,
-                    }}
-          
-                    loadingEnabled={true}
-                    toolbarEnabled={true}
-                    zoomControlEnabled={true}
-                    onPress={response => {console.log(response)}}
+                      ref={map => this.mapView = map}
+                      style={styles.map}
+                      style={{height: this.props.height}}
+                      region={{
+                        latitude: this.props.initialLocation.latitude,
+                        longitude: this.props.initialLocation.longitude,
+                        latitudeDelta: Math.abs(this.state.origin.latitude) * .0002,
+                        longitudeDelta: Math.abs(this.state.origin.longitude) * .0002,
+                      }}
+            
+                      loadingEnabled={true}
+                      toolbarEnabled={true}
+                      zoomControlEnabled={true}
+                      showsPointsOfInterest={false}
+                      showsBuildings={false}
                   >
           
                   <MapView.Marker
-    
+                    image={require('../assets/iconsPack/user.png')}
+                    title="You!"
                     coordinate={this.props.initialLocation}
                   >
                     
@@ -194,6 +196,7 @@ export default class MapScreen extends Component {
                   
                   {this.props.events.map(event => (
                     <MapView.Marker
+                      image={require('../assets/iconsPack/event.png')}
                       title={`${event.nome} | ${event.userId}`}
                       description={`${event.descricao}`}
                       coordinate={event.location}
@@ -213,7 +216,7 @@ export default class MapScreen extends Component {
                 ) : (
                   // Mapa renderizado para a adicão de novos eventos
                   <MapView
-      
+                    
                     ref={map => this.mapView = map}
                     style={styles.map}
                     style={{height: this.props.height}}
@@ -227,10 +230,13 @@ export default class MapScreen extends Component {
                     loadingEnabled={true}
                     toolbarEnabled={true}
                     zoomControlEnabled={true}
+                    showsPointsOfInterest={false}
+                    showsBuildings={false}
                   >
           
                   <MapView.Marker
                     coordinate={this.props.initialLocation}
+                    image={require('../assets/iconsPack/event.png')}
                     draggable
                     onDragEnd={(e) => {this.props.insertPoint(e.nativeEvent)}}
                   >
