@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 
 import {
   View,
-  Text,
-  TouchableOpacity,
-  TextInput,
   Dimensions,
   StyleSheet
 } from 'react-native';
@@ -166,50 +163,93 @@ export default class MapScreen extends Component {
 
         return(
 
+            
             <View>
 
-              <MapView
+                {(this.props.type != "addEvent") ? (
+                    <MapView
       
-                ref={map => this.mapView = map}
-                style={styles.map}
+                    ref={map => this.mapView = map}
+                    style={styles.map}
+                    style={{height: this.props.height}}
+                    region={{
+                      latitude: this.props.initialLocation.latitude,
+                      longitude: this.props.initialLocation.longitude,
+                      latitudeDelta: Math.abs(this.state.origin.latitude) * .0002,
+                      longitudeDelta: Math.abs(this.state.origin.longitude) * .0002,
+                    }}
+          
+                    loadingEnabled={true}
+                    toolbarEnabled={true}
+                    zoomControlEnabled={true}
+                    onPress={response => {console.log(response)}}
+                  >
+          
+                  <MapView.Marker
+    
+                    coordinate={this.props.initialLocation}
+                  >
+                    
+                  </MapView.Marker>
+                  
+                  {this.props.events.map(event => (
+                    <MapView.Marker
+                      title={`${event.nome} | ${event.userId}`}
+                      description={`${event.descricao}`}
+                      coordinate={event.location}
+                    >
+    
+                    </MapView.Marker>
+                  ))}
+                  
+    
+                  <MapViewDirections
+                    origin={this.state.origin}
+                    destination={this.state.destination}
+                    apikey={GOOGLE_MAPS_APIKEY}
+                  />
+          
+                  </MapView>
+                ) : (
+                  // Mapa renderizado para a adicão de novos eventos
+                  <MapView
       
-                region={{
-                  latitude: this.props.initialLocation.latitude,
-                  longitude: this.props.initialLocation.longitude,
-                  latitudeDelta: Math.abs(this.state.origin.latitude) * .0002,
-                  longitudeDelta: Math.abs(this.state.origin.longitude) * .0002,
-                }}
-      
-                loadingEnabled={true}
-                toolbarEnabled={true}
-                zoomControlEnabled={true}
-                
-              >
-      
-              <MapView.Marker
-                coordinate={this.props.initialLocation}
-              >
-                
-              </MapView.Marker>
-              
-              {this.props.events.map(event => (
-                <MapView.Marker
-                  title={event.nome}
-                  description={`${event.descricao}\n\n${event.userId}`}
-                  coordinate={this.props.initialLocation}
-                >
+                    ref={map => this.mapView = map}
+                    style={styles.map}
+                    style={{height: this.props.height}}
+                    region={{
+                      latitude: this.props.initialLocation.latitude,
+                      longitude: this.props.initialLocation.longitude,
+                      latitudeDelta: Math.abs(this.state.origin.latitude) * .0002,
+                      longitudeDelta: Math.abs(this.state.origin.longitude) * .0002,
+                    }}
+          
+                    loadingEnabled={true}
+                    toolbarEnabled={true}
+                    zoomControlEnabled={true}
+                  >
+          
+                  <MapView.Marker
+                    coordinate={this.props.initialLocation}
+                    draggable
+                    onDragEnd={(e) => {this.props.insertPoint(e.nativeEvent)}}
+                  >
+                    
+                  </MapView.Marker>
+                  
+                  
+                  
+    
+                  <MapViewDirections
+                    origin={this.state.origin}
+                    destination={this.state.destination}
+                    apikey={GOOGLE_MAPS_APIKEY}
+                  />
+          
+                  </MapView>
+                )}
 
-                </MapView.Marker>
-              ))}
               
-
-              <MapViewDirections
-                origin={this.state.origin}
-                destination={this.state.destination}
-                apikey={GOOGLE_MAPS_APIKEY}
-              />
-      
-              </MapView>
 
               
 
@@ -225,7 +265,6 @@ const styles = StyleSheet.create({
 
     map: {
       position: 'absolute',
-      height: 800,
       width: '100%',
       top: 0,
       left: 0,

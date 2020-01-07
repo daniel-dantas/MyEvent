@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import Card from '../components/card'
-import MapView, {Marker} from 'react-native-maps'
 import Map from '../components/map'
+
 import { 
     Text,
     StyleSheet,
     SafeAreaView,
-    ScrollView,
     View,
 } from 'react-native'
 
@@ -17,7 +15,6 @@ import {
 } from 'react-native-elements'
 
 import event from '../services/event'
-import Container from '../components/container'
 import Geolocation from '@react-native-community/geolocation'
 
 export default (props) => {
@@ -64,9 +61,10 @@ export default (props) => {
             snap.forEach(item => {
                 eventos.push({
                     key: item.key,
-                    title: item.val().nome,
-                    description: item.val().descricao,
-                    typeEvent: item.val().tipo,
+                    nome: item.val().nome,
+                    descricao: item.val().descricao,
+                    location: item.val().location,
+                    tipoEvento: item.val().tipo,
                     userId: item.val().userId
                 })
             })
@@ -94,37 +92,13 @@ export default (props) => {
                 </View>
                 
             </View>
-                {(eventos.length === 0)  ? (
-                    <View>
-                        <Map 
-                            initialLocation={location}
-                            events={[{nome: 'Arromba', descricao: 'descricao evento', userId:userId, location: location}]}
-                        />
-                        
-                        {/* <MapView
-                            initialRegion={location}
-                        >
-                            
-                        </MapView> */}
-                        {/* <Text style={styles.textEventoProximo}>
-                            Nenhum evento proximo!
-                        </Text> */}
-                    </View>
-                ) : (
-                    <ScrollView>
-                        {eventos.map(evento => (
-                            <Card 
-                                key={evento.key}
-                                title={evento.title}
-                                description={evento.description}
-                                contact={evento.userId}
-                                nameButton="Ver Evento"
-                                typeEvent={evento.typeEvent}
-                                isAdmin={false}
-                            />
-                        ))}
-                    </ScrollView>
-                )}
+            <View>
+                <Map 
+                    height={800}
+                    initialLocation={location}
+                    events={eventos}
+                /> 
+            </View>
         </SafeAreaView>
     )
 }

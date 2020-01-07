@@ -19,6 +19,9 @@ const telasLogado = {
 }
 
 export default createStackNavigator({
+    // novoEvento:{
+    //     screen: NovoEvento
+    // },
     Login:{
         screen: Login,
         navigationOptions: {
