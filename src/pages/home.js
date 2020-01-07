@@ -88,7 +88,7 @@ export default (props) => {
                     containerStyle={styles.buttonAdicionar}
                 />
                 <View style={styles.textContainer}>
-                    <Text style={styles.titleText}>Meus Eventos</Text>
+                    <Text style={styles.titleText}>Eventos Proximos</Text>
                 </View>
                 
             </View>
