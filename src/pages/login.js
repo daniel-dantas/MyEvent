@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 import Container from '../components/container'
+
 // React Native elements
 import {
     Input
 }from 'react-native-elements'
 
-import {Text, StyleSheet, TouchableOpacity} from 'react-native'
+import {Text, StyleSheet, TouchableOpacity, TextInput} from 'react-native'
 
 import User from '../services/users'
 
@@ -39,20 +40,26 @@ export default (props) => {
         <Container>
             <Text style={styles.logo}>Login</Text>
             
+            
+
             <Input
                 placeholder="Digite o email"
                 value={email}
                 onChangeText={email => setEmail(email)}
                 inputContainerStyle={styles.input}
-                
+                placeholderTextColor="#bdbdbd"
+                inputStyle={styles.textInput}
             />
 
             <Input
                 style={styles.input}
                 placeholder="Digite a senha"
                 onChangeText={senha => setSenha(senha)}
-                inputStyle={styles.input}
+                inputContainerStyle={styles.input}
                 secureTextEntry={true}
+                placeholderTextColor="#bdbdbd"
+                inputStyle={styles.textInput}
+
             />
 
             <TouchableOpacity style={styles.linkOutraForma} onPress={() => {props.navigation.navigate('LoginTelefone')}}>
@@ -74,14 +81,29 @@ export default (props) => {
 const styles = StyleSheet.create({
     logo:{
         marginBottom: 30,
-        fontSize: 25
+        fontSize: 25,
+        color: '#fff'
     },
     input: {
-        paddingTop: 20,
+        marginTop: 15,
+        height: 45,
+        borderStyle: 'solid',
+        borderColor: '#fff',
+        borderWidth: 1,
+        alignSelf: "stretch",
+        paddingHorizontal: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: '#fff',
+        borderRadius: 10,
     },
     button: {
         height: 45,
-        backgroundColor: '#069',
+        backgroundColor: '#424242',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: '#fff',
+        borderRadius: 10,
         alignSelf: "stretch",
         paddingHorizontal: 20,
         justifyContent: 'center',
@@ -109,6 +131,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textLink: {
-        color: '#069'
+        color: '#fff'
+    },
+    textInput: {
+        color: '#bdbdbd'
     }
 })
