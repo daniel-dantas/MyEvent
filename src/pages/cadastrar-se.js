@@ -46,15 +46,19 @@ export default (props) => {
                 placeholder="Digite seu email"
                 value={email}
                 onChangeText={email => setEmail(email)}
-                inputStyle={styles.input}
+                inputContainerStyle={styles.input}
+                inputStyle={styles.textInput}
+                placeholderTextColor="#bdbdbd"
             />
 
             <Input 
                 placeholder="Digite sua senha"
                 value={senha}
                 onChangeText={senha => setSenha(senha)}
-                inputStyle={styles.input}
+                inputContainerStyle={styles.input}
                 secureTextEntry={true}
+                inputStyle={styles.textInput}
+                placeholderTextColor="#bdbdbd"
             />
 
             <View style={styles.espaco}></View>
@@ -69,24 +73,42 @@ export default (props) => {
 const styles = StyleSheet.create({
     logo:{
         marginBottom: 30,
-        fontSize: 25
+        fontSize: 25,
+        color: '#fff'
     },
     input: {
-        paddingTop: 20,
+        marginTop: 15,
+        height: 45,
+        borderStyle: 'solid',
+        borderColor: '#fff',
+        borderWidth: 1,
+        alignSelf: "stretch",
+        paddingHorizontal: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: '#fff',
+        borderRadius: 10,
     },
     button: {
         height: 45,
-        backgroundColor: '#069',
+        backgroundColor: '#FFF',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: '#fff',
+        borderRadius: 10,
         alignSelf: "stretch",
-        paddingHorizontal: 20,
+        paddingHorizontal: 18,
         justifyContent: 'center',
         alignItems: 'center'
     },
     buttonText: {
-        color: '#FFF',
+        color: '#424242',
         fontWeight: 'bold'
     },
     espaco: {
         paddingTop: 30
+    },
+    textInput: {
+        color: '#bdbdbd'
     }
 })

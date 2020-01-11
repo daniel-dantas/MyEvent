@@ -64,7 +64,7 @@ export default (props) => {
                         inputStyle={styles.textInput}
                         value={telefone}
                         onChangeText={telefone => {setTelefone(telefone)}}
-                        placeholderTextColor="#fff"
+                        placeholderTextColor="#bdbdbd"
                     />
 
                     <View style={styles.espaco}></View>
