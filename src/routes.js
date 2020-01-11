@@ -27,10 +27,22 @@ export default createStackNavigator({
         }
     },
     Cadastrar: {
-        screen: Cadastrar
+        screen: Cadastrar,
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: '#424242',
+                headerTintColor: '#fff',
+            },
+        },
     },
     LoginTelefone:{
-        screen: LoginTelefone
+        screen: LoginTelefone,
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: '#424242',
+                headerTintColor: '#fff',
+            },
+        },
     },
     Logado:{
         screen: createBottomTabNavigator(telasLogado),

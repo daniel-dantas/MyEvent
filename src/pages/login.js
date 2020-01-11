@@ -39,9 +39,6 @@ export default (props) => {
     return (
         <Container>
             <Text style={styles.logo}>Login</Text>
-            
-            
-
             <Input
                 placeholder="Digite o email"
                 value={email}
@@ -99,18 +96,18 @@ const styles = StyleSheet.create({
     },
     button: {
         height: 45,
-        backgroundColor: '#424242',
+        backgroundColor: '#FFF',
         borderStyle: 'solid',
         borderWidth: 1,
         borderColor: '#fff',
         borderRadius: 10,
         alignSelf: "stretch",
-        paddingHorizontal: 20,
+        paddingHorizontal: 18,
         justifyContent: 'center',
         alignItems: 'center'
     },
     buttonText: {
-        color: '#FFF',
+        color: '#424242',
         fontWeight: 'bold'
     },
     linkOutraForma: {

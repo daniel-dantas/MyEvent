@@ -60,9 +60,11 @@ export default (props) => {
 
                     <Input 
                         placeholder="Digite seu telefone"
-                        inputStyle={styles.input}
+                        inputContainerStyle={styles.input}
+                        inputStyle={styles.textInput}
                         value={telefone}
                         onChangeText={telefone => {setTelefone(telefone)}}
+                        placeholderTextColor="#fff"
                     />
 
                     <View style={styles.espaco}></View>
@@ -102,25 +104,43 @@ const styles = StyleSheet.create({
         flex: 1
     },
     input: {
-        paddingTop: 20,
+        marginTop: 15,
+        height: 45,
+        borderStyle: 'solid',
+        borderColor: '#fff',
+        borderWidth: 1,
+        alignSelf: "stretch",
+        paddingHorizontal: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: '#fff',
+        borderRadius: 10,
     },
     logo:{
         marginBottom: 30,
-        fontSize: 25
+        fontSize: 25,
+        color: '#fff'
     },
     button: {
         height: 45,
-        backgroundColor: '#069',
+        backgroundColor: '#FFF',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: '#fff',
+        borderRadius: 10,
         alignSelf: "stretch",
-        paddingHorizontal: 20,
+        paddingHorizontal: 18,
         justifyContent: 'center',
         alignItems: 'center'
     },
     buttonText: {
-        color: '#FFF',
+        color: '#424242',
         fontWeight: 'bold'
     },
     espaco: {
         paddingTop: 30
+    },
+    textInput: {
+        color: '#bdbdbd'
     }
 })
