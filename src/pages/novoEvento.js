@@ -16,7 +16,6 @@ import {
 } from 'react-native-elements'
 
 import Map from '../components/map'
-import Container from '../components/container'
 
 // Novo Evento
 export default (props) => {
@@ -51,7 +50,7 @@ export default (props) => {
     const inserirEvento = async () => {
         
 
-        if(nomeEvento.length === 0 || descricaoEvento.length === 0 || tipoEvento.length === 0){
+        if(isEmptyState()){
             alert('Preencha todos os campos')    
         }else{
             
@@ -75,6 +74,14 @@ export default (props) => {
                 alert('Erro ao cadastrar evento!')
             }
         }
+    }
+
+    const isEmptyState = () => {
+        if (nomeEvento.length === 0 || descricaoEvento.length === 0 || tipoEvento.length === 0){
+            return true
+        }
+
+        return false
     }
 
     const getLocation = async() => {
@@ -114,7 +121,6 @@ export default (props) => {
                 inputContainerStyle={styles.input}
                 inputStyle={styles.textInput}
                 placeholderTextColor="#bdbdbd"
-
             />
 
             <Input
@@ -125,7 +131,6 @@ export default (props) => {
                 inputStyle={styles.textInput}
                 inputContainerStyle={styles.input}
                 placeholderTextColor="#bdbdbd"
-
             />
             
             <Input
@@ -136,7 +141,6 @@ export default (props) => {
                 inputStyle={styles.textInput}
                 inputContainerStyle={styles.input}
                 placeholderTextColor="#bdbdbd"
-
             />
 
             <Input
@@ -159,11 +163,11 @@ export default (props) => {
                 inputContainerStyle={styles.input}
             />
 
-            <Container>
-                <TouchableOpacity style={styles.button} onPress={() => inserirEvento()}>
+            <View style={styles.viewButton}>
+                <TouchableOpacity style={styles.button} onPress={() => {inserirEvento()}}>
                     <Text style={styles.buttonText}>Adicionar Evento</Text>
                 </TouchableOpacity>
-            </Container>
+            </View>
                 
             
             
@@ -218,12 +222,19 @@ const styles = StyleSheet.create({
         color: '#424242',
         fontWeight: 'bold'
     },
+    viewButton: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        paddingTop: 30,
+        paddingHorizontal: 10
+    },
     textInput: {
         color: '#fff'
     },
     mapScroll: {
         marginTop: 80,
-        paddingTop: 30,
+        paddingTop: 35,
         backgroundColor: '#424242'
     },
     formContent: {
