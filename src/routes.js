@@ -43,12 +43,7 @@ const telasLogado = {
 }
 
 export default createStackNavigator({
-    Logado:{
-        screen: createBottomTabNavigator(telasLogado),
-        navigationOptions:{
-            header: null
-        }
-    },
+    
     Login:{
         screen: Login,
         navigationOptions: {
@@ -80,7 +75,13 @@ export default createStackNavigator({
         }
     },
     novoEvento:{
-        screen: NovoEvento
+        screen: NovoEvento,
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: '#424242',
+                headerTintColor: '#fff',
+            },
+        },
     },
     ViewEvent: {
         screen: ViewEvent,

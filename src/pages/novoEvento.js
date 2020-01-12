@@ -7,15 +7,16 @@ import {
     Text,
     StyleSheet,
     View,
-    ScrollView
+    ScrollView,
+    TouchableOpacity
 } from 'react-native'
 
 import {
     Input,
-    Button,
 } from 'react-native-elements'
 
 import Map from '../components/map'
+import Container from '../components/container'
 
 // Novo Evento
 export default (props) => {
@@ -111,6 +112,9 @@ export default (props) => {
                 value={nomeEvento}
                 onChangeText={nomeEvento => setNomeEvento(nomeEvento)}
                 inputContainerStyle={styles.input}
+                inputStyle={styles.textInput}
+                placeholderTextColor="#bdbdbd"
+
             />
 
             <Input
@@ -118,7 +122,10 @@ export default (props) => {
                 placeholder="Digite a descricao"
                 value={descricaoEvento}
                 onChangeText={descricaoEvento => setDescricaoEvento(descricaoEvento)}
-                inputStyle={styles.input}
+                inputStyle={styles.textInput}
+                inputContainerStyle={styles.input}
+                placeholderTextColor="#bdbdbd"
+
             />
             
             <Input
@@ -126,7 +133,10 @@ export default (props) => {
                 placeholder="Tipo de evento (Musica, Cinema, Balada.etc)"
                 value={tipoEvento}
                 onChangeText={tipoEvento => setTipoEvento(tipoEvento)}
-                inputStyle={styles.input}
+                inputStyle={styles.textInput}
+                inputContainerStyle={styles.input}
+                placeholderTextColor="#bdbdbd"
+
             />
 
             <Input
@@ -135,7 +145,8 @@ export default (props) => {
                 disabled
                 value={latitude+''}
                 onChangeText={latitude => setLatitude(latitude)}
-                inputStyle={styles.input}
+                inputStyle={styles.textInput}
+                inputContainerStyle={styles.input}
             />
 
             <Input
@@ -144,14 +155,18 @@ export default (props) => {
                 placeholder="Longitude"
                 value={longitude+''}
                 onChangeText={longitude => setLongitude(longitude)}
-                inputStyle={styles.input}
+                inputStyle={styles.textInput}
+                inputContainerStyle={styles.input}
             />
 
-            <Button 
-                title="Cadastrar Evento"
-                containerStyle={styles.button}
-                onPress={() => inserirEvento()}
-            />
+            <Container>
+                <TouchableOpacity style={styles.button} onPress={() => inserirEvento()}>
+                    <Text style={styles.buttonText}>Adicionar Evento</Text>
+                </TouchableOpacity>
+            </Container>
+                
+            
+            
             
             <ScrollView style={styles.mapScroll}>
                 <Map 
@@ -171,21 +186,48 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 20,
         fontSize: 25,
-        textAlign: "center"
+        textAlign: "center",
+        color: '#fff'
     },
     input: {
-        paddingTop: 20,
+        marginTop: 15,
+        height: 45,
+        borderStyle: 'solid',
+        borderColor: '#fff',
+        borderWidth: 1,
+        alignSelf: "stretch",
+        paddingHorizontal: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
     },
     button: {
-        alignSelf: "stretch",
-        marginTop: 20
+        height: 45,
+        backgroundColor: '#FFF',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: '#fff',
+        borderRadius: 10,
+        paddingHorizontal: 80,
+        alignSelf: 'stretch',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 80,
+    },
+    buttonText: {
+        color: '#424242',
+        fontWeight: 'bold'
+    },
+    textInput: {
+        color: '#fff'
     },
     mapScroll: {
-        marginTop: 10,
-        backgroundColor: '#fff'
+        marginTop: 80,
+        paddingTop: 30,
+        backgroundColor: '#424242'
     },
     formContent: {
-        backgroundColor: '#fff'
+        backgroundColor: '#424242'
     }
     
 })

@@ -6,7 +6,7 @@ import {
     Input
 }from 'react-native-elements'
 
-import {Text, StyleSheet, TouchableOpacity, TextInput} from 'react-native'
+import {Text, StyleSheet, TouchableOpacity} from 'react-native'
 
 import User from '../services/users'
 
@@ -17,7 +17,7 @@ export default (props) => {
 
     
     const login = async () => {
-        if(email.length === 0 || senha === 0){
+        if(isEmptyState()){
             alert('Digite o email e a senha!')
         }else{
             const user = await User.authEmailSenha(email, senha)
@@ -34,11 +34,17 @@ export default (props) => {
         }
     }
 
-
+    const isEmptyState = () => {
+        if (email.length === 0 || senha.length === 0){
+            return true
+        }
+        return false
+    }
 
     return (
         <Container>
             <Text style={styles.logo}>Login</Text>
+
             <Input
                 placeholder="Digite o email"
                 value={email}
