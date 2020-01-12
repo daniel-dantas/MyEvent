@@ -1,8 +1,10 @@
 import {
     createStackNavigator,
+}from 'react-navigation'
+
+import {
     createBottomTabNavigator
-    }
-from 'react-navigation'
+}from 'react-navigation-tabs'
 
 // Pages do APP
 import Login from './pages/login'
@@ -14,12 +16,39 @@ import NovoEvento from './pages/novoEvento'
 import ViewEvent from './pages/viewEvent'
 
 const telasLogado = {
-    Home,
-    MeusEventos
+    Home: {
+        screen: Home,
+        navigationOptions: ({navigation}) => ({
+            tabBarLabel: 'Home',
+            tabBarOptions: {
+                activeTintColor: '#fff',
+                style: {
+                    backgroundColor: '#424242'
+                }
+            }
+        })
+    },
+    MeusEventos: {
+        screen: MeusEventos,
+        navigationOptions: ({navigation}) => ({
+            tabBarLabel: 'Meus Eventos',
+            tabBarOptions: {
+                activeTintColor: '#fff',
+                style: { 
+                    backgroundColor: '#424242'
+                }
+            }
+        })
+    }
 }
 
 export default createStackNavigator({
-   
+    Logado:{
+        screen: createBottomTabNavigator(telasLogado),
+        navigationOptions:{
+            header: null
+        }
+    },
     Login:{
         screen: Login,
         navigationOptions: {

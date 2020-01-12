@@ -58,7 +58,7 @@ export default (props) => {
                 </View>
                 <Button 
                     icon={
-                        <Icon name='add' color='#ffffff' type='material'/>
+                        <Icon name='add' color='#424242' type='material'/>
                     }
                     onPress={() => {
                         props.navigation.navigate('novoEvento', {
@@ -66,6 +66,8 @@ export default (props) => {
                             tipoLogin: tipoLogin
                         })
                     }}
+                    
+                    buttonStyle={styles.buttonAdicionarText}
                     containerStyle={styles.buttonAdicionar}
                 />
             </View>
@@ -99,7 +101,7 @@ export default (props) => {
 const styles = StyleSheet.create({
     view: {
         flex: 1,
-        backgroundColor: '#FFF',
+        backgroundColor: '#424242',
     },
     eventArea: {
         marginTop: 20
@@ -111,6 +113,7 @@ const styles = StyleSheet.create({
         margin: 30,
         marginBottom: 10,
         fontSize: 20,
+        color: '#fff'
     },
     textContainer: {
         alignItems: "flex-start"
@@ -121,6 +124,10 @@ const styles = StyleSheet.create({
         marginTop: -40,
     },
     nenhumEvento: {
-        fontSize: 20
+        fontSize: 20,
+        color: '#fff'
+    },
+    buttonAdicionarText: {
+        backgroundColor: '#fff'
     }
 })

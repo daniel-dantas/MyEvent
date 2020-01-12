@@ -78,13 +78,14 @@ export default (props) => {
     return (
         <SafeAreaView style={styles.view}>
             <View style={styles.title}>
-                <Button 
+                <Button
                     icon={
-                        <Icon name="arrow-left" color='#ffffff' type='evilicon'/>
+                        <Icon name="arrow-left" color='#424242' type='evilicon'/>
                     }
                     onPress={() => {
                         props.navigation.navigate('Login')
                     }}
+                    buttonStyle={styles.buttonAdicionarText}
                     containerStyle={styles.buttonAdicionar}
                 />
                 <View style={styles.textContainer}>
@@ -106,12 +107,12 @@ export default (props) => {
 const styles = StyleSheet.create({
     view: {
         flex: 1,
-        backgroundColor: '#FFF',
+        backgroundColor: '#424242',
     },
     titleText: {
         margin: 30,
         marginBottom: 10,
-        fontSize: 20
+        fontSize: 20,
     },
     textEventoProximo: {
         fontSize: 20
@@ -123,6 +124,7 @@ const styles = StyleSheet.create({
         marginTop: -40,
         marginRight: 20,
         fontSize: 20,
+        color: '#fff'
     },
     textContainer: {
         alignItems: "flex-start",
@@ -136,5 +138,8 @@ const styles = StyleSheet.create({
     },
     nenhumEvento: {
         fontSize: 20
+    },
+    buttonAdicionarText: {
+        backgroundColor: '#fff'
     }
 })

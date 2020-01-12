@@ -86,7 +86,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         justifyContent: 'center',
         alignItems: 'center',
-        color: '#fff',
         borderRadius: 10,
     },
     button: {
@@ -109,6 +108,6 @@ const styles = StyleSheet.create({
         paddingTop: 30
     },
     textInput: {
-        color: '#bdbdbd'
+        color: '#fff'
     }
 })
