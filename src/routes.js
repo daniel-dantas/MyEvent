@@ -43,7 +43,6 @@ const telasLogado = {
 }
 
 export default createStackNavigator({
-    
     Login:{
         screen: Login,
         navigationOptions: {

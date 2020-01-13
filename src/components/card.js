@@ -34,26 +34,28 @@ export default (props) => {
     }
 
     return (
-        <Card
+        <Card containerStyle={styles.card}
             image={image}
             >
             <Text style={styles.title}>{props.title}</Text>
-            <Text style={{marginBottom: 10}}>
+            <Text style={styles.text}>
                 {props.description}
             </Text>
-            <Text style={{marginBottom: 10}}>
+            <Text style={styles.text}>
                 Contato: {props.contact}
             </Text>
             <Button
-            icon={<Icon name='sc-telegram' color='#ffffff' type='evilicon'/>}
-            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-            title={props.nameButton}/>
+                icon={<Icon name='sc-telegram' color='#424242' type='evilicon'/>}
+                buttonStyle={styles.buttonEvent}
+                titleStyle={styles.buttonText}
+                title={props.nameButton}/>
             <View style={styles.espaco}></View>
             {(props.isAdmin) ? (
                 <Button
-                icon={<Icon name='delete' color='#ffffff' type='material'/>}
-                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+                icon={<Icon name='delete' color='#424242' type='material'/>}
+                buttonStyle={styles.buttonEvent}
                 title="Excluir"
+                titleStyle={styles.buttonText}
                 onPress={() => excluirEvento()}
                 />
             ) : (<View></View>)}
@@ -64,9 +66,28 @@ export default (props) => {
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: 23
+        fontSize: 23,
+        color: '#fff'
     },
     espaco: {
         paddingTop: 10
+    },
+    card: {
+        backgroundColor: '#424242',
+        borderColor: '#6d6d6d',
+    },
+    text: {
+        color: '#fff',
+        marginBottom: 10
+    },
+    buttonEvent: {
+        borderRadius: 0,
+        marginLeft: 0, 
+        marginRight: 0,
+        marginBottom: 0,
+        backgroundColor: '#fff'
+    },
+    buttonText: {
+        color: '#424242'
     }
 })

@@ -169,6 +169,7 @@ export default class MapScreen extends Component {
                 {(this.props.type != "addEvent") ? (
                     // Mapa renderizado para visualização de eventos cadastrados
                     <MapView
+                      loadingBackgroundColor="#424242"
                       ref={map => this.mapView = map}
                       style={styles.map}
                       style={{height: this.props.height}}
@@ -276,7 +277,6 @@ const styles = StyleSheet.create({
       left: 0,
       right: 0,
       bottom: 0,
-  
     },
 
 });
