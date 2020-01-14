@@ -13,7 +13,6 @@ import LoginTelefone from './pages/loginTelefone'
 import Home from './pages/home'
 import MeusEventos from './pages/meusEventos'
 import NovoEvento from './pages/novoEvento'
-import ViewEvent from './pages/viewEvent'
 
 const telasLogado = {
     Home: {
@@ -81,9 +80,5 @@ export default createStackNavigator({
                 headerTintColor: '#fff',
             },
         },
-    },
-    ViewEvent: {
-        screen: ViewEvent,
-        header: null
     }
 })

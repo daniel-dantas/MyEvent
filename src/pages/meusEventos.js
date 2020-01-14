@@ -17,7 +17,7 @@ import Container from '../components/container'
 
 import event from '../services/event'
 
-export default (props) => {
+export default function meusEventos(props) {
 
     const [eventos, setEventos] = useState([])
 
@@ -82,7 +82,6 @@ export default (props) => {
                             description={evento.description}
                             contact={evento.userId}
                             typeEvent={evento.typeEvent}
-                            nameButton="Ver Evento"
                             isAdmin={true}
                         />
                     ))}

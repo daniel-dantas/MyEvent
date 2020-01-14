@@ -149,16 +149,18 @@ export default class MapScreen extends Component {
                       
                       if(event.isActive){
                         return (<MapView.Marker
+                            key={`${event.nome}`}
                             image={require('../assets/iconsPack/event-active.png')}
                             title={`${event.nome} | You!`}
                             description={`${event.descricao}`}
                             coordinate={event.location}
-                        >
+                          >
       
                         </MapView.Marker>)
                       }else{
                         return(
                           <MapView.Marker
+                            key={`${event.nome} | ${event.userId}`}
                             image={require('../assets/iconsPack/event.png')}
                             title={`${event.nome} | ${event.userId}`}
                             description={`${event.descricao}`}

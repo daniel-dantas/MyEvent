@@ -17,7 +17,7 @@ import {
 import event from '../services/event'
 import Geolocation from '@react-native-community/geolocation'
 
-export default (props) => {
+export default function home(props) {
     
     const [eventos, setEventos] = useState([])
     const [location, setLocation] = useState({

@@ -14,7 +14,7 @@ import {
 
 import User from '../services/users'
 
-export default (props) => {
+export default function cadastrarse(props) {
     // States dos dados de cadastro
    
     const [email, setEmail] = useState('')

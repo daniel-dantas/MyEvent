@@ -18,7 +18,7 @@ import {
 import Map from '../components/map'
 
 // Novo Evento
-export default (props) => {
+export default function novoEvento(props) {
 
     
     const [nomeEvento, setNomeEvento] = useState('')

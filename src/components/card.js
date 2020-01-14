@@ -3,7 +3,7 @@ import {Text, StyleSheet, View} from 'react-native'
 import {Card, Button, Icon } from 'react-native-elements'
 import event from '../services/event'
 
-export default (props) => {
+export default function card(props) {
 
     const [image, setImage] = useState(require('../assets/Outros.jpeg'))
 
@@ -44,11 +44,6 @@ export default (props) => {
             <Text style={styles.text}>
                 Contato: {props.contact}
             </Text>
-            <Button
-                icon={<Icon name='sc-telegram' color='#424242' type='evilicon'/>}
-                buttonStyle={styles.buttonEvent}
-                titleStyle={styles.buttonText}
-                title={props.nameButton}/>
             <View style={styles.espaco}></View>
             {(props.isAdmin) ? (
                 <Button

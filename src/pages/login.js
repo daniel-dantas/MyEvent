@@ -10,7 +10,7 @@ import {Text, StyleSheet, TouchableOpacity, View, Image} from 'react-native'
 
 import User from '../services/users'
 
-export default (props) => {
+export default function login(props) {
 
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')

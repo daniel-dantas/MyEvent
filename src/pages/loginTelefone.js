@@ -4,7 +4,7 @@ import {Input} from 'react-native-elements'
 import User from '../services/users'
 import Container from '../components/container'
 
-export default (props) => {
+export default function loginTelefone(props) {
 
     // Se o numero estiver valido carregara a parte de verificação
     const [foneConfirm, setFoneConfirm] = useState(false)
