@@ -20,16 +20,22 @@ export default (props) => {
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
 
-    const cadastro = async () => {
-        const user = await User.createUser(email,senha)
+    const isEmptyState = () => {
+        return email.length === 0 || senha.length === 0
+    }
 
-        if( email.length === 0 || senha.length === 0){
+    const cadastro = async () => {
+        
+
+        if(isEmptyState()){
             alert('Digite o email e a senha!')
         }else{
+
+            const user = await User.createUser(email,senha)
+
             if(!user){
                 props.navigation.navigate('Logado', {
                     userEmail: user.user.email,
-                    userSenha: user.user.senha
                 })
             }else{
                 alert('Usuario já cadastrado!')
