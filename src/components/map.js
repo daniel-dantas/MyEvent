@@ -119,6 +119,7 @@ export default class MapScreen extends Component {
                 {(this.props.type != "addEvent") ? (
                     // Mapa renderizado para visualização de eventos cadastrados
                     <MapView
+                      customMapStyle={require('./config-style-map')}
                       loadingBackgroundColor="#424242"
                       ref={map => this.mapView = map}
                       style={styles.map}
@@ -148,13 +149,14 @@ export default class MapScreen extends Component {
                   {this.props.events.map(event => {
                       
                       if(event.isActive){
-                        return (<MapView.Marker
+                        return (
+                        <MapView.Marker
                             key={`${event.nome}`}
                             image={require('../assets/iconsPack/event-active.png')}
                             title={`${event.nome} | You!`}
                             description={`${event.descricao}`}
                             coordinate={event.location}
-                          >
+                        >
       
                         </MapView.Marker>)
                       }else{
@@ -183,7 +185,7 @@ export default class MapScreen extends Component {
                 ) : (
                   // Mapa renderizado para a adicão de novos eventos
                   <MapView
-                    
+                    customMapStyle={require('./config-style-map')}
                     ref={map => this.mapView = map}
                     style={styles.map}
                     style={{height: this.props.height}}
@@ -202,7 +204,7 @@ export default class MapScreen extends Component {
           
                   <MapView.Marker
                     coordinate={this.props.initialLocation}
-                    image={require('../assets/iconsPack/event.png')}
+                    image={require('../assets/iconsPack/event-active.png')}
                     draggable
                     onDragEnd={(e) => {this.props.insertPoint(e.nativeEvent)}}
                   >
