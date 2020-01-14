@@ -9,6 +9,7 @@ import {
     StyleSheet,
     TouchableOpacity,
     View,
+    Image
 } from 'react-native'
 
 import User from '../services/users'
@@ -38,6 +39,9 @@ export default (props) => {
 
     return (
         <Container>
+            <View style={styles.logoContent}>
+                <Image source={require('../assets/iconsPack/myevent-logo.png')}/>
+            </View>
             <Text style={styles.logo}>
                 Cadastrar-se
             </Text>
@@ -71,6 +75,9 @@ export default (props) => {
 }
 
 const styles = StyleSheet.create({
+    logoContent: {
+        marginBottom: 20
+    },
     logo:{
         marginBottom: 30,
         fontSize: 25,

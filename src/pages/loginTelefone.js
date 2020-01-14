@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Text, StyleSheet, TouchableOpacity, View} from 'react-native'
+import { Text, StyleSheet, TouchableOpacity, View, Image} from 'react-native'
 import {Input} from 'react-native-elements'
 import User from '../services/users'
 import Container from '../components/container'
@@ -56,6 +56,9 @@ export default (props) => {
         <View style={styles.master}>
             {(!foneConfirm) ? (
                 <Container>
+                    <View style={styles.logoContent}>
+                        <Image source={require('../assets/iconsPack/myevent-logo.png')}/>
+                    </View>
                     <Text style={styles.logo}>Login com telefone</Text>
 
                     <Input 
@@ -100,6 +103,9 @@ export default (props) => {
 }
 
 const styles = StyleSheet.create({
+    logoContent: {
+        marginBottom: 20
+    },
     master: {
         flex: 1
     },

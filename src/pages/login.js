@@ -6,7 +6,7 @@ import {
     Input
 }from 'react-native-elements'
 
-import {Text, StyleSheet, TouchableOpacity} from 'react-native'
+import {Text, StyleSheet, TouchableOpacity, View, Image} from 'react-native'
 
 import User from '../services/users'
 
@@ -43,7 +43,9 @@ export default (props) => {
 
     return (
         <Container>
-            <Text style={styles.logo}>Login</Text>
+            <View style={styles.logoContent}>
+                <Image source={require('../assets/iconsPack/myevent-logo.png')}/>
+            </View>
 
             <Input
                 placeholder="Digite o email"
@@ -82,10 +84,8 @@ export default (props) => {
 }
 
 const styles = StyleSheet.create({
-    logo:{
-        marginBottom: 30,
-        fontSize: 25,
-        color: '#fff'
+    logoContent: {
+        marginBottom: 40
     },
     input: {
         marginTop: 15,

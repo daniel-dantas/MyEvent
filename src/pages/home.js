@@ -65,12 +65,11 @@ export default (props) => {
                     descricao: item.val().descricao,
                     location: item.val().location,
                     tipoEvento: item.val().tipo,
+                    isActive: `"${item.val().userId}"` === userId,
                     userId: item.val().userId
                 })
             })
-            setEventos(eventos.filter(evento => {
-                return userId != `"${evento.userId}"`
-            }))
+            setEventos(eventos)
         })
     }
 

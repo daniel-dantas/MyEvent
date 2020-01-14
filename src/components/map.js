@@ -95,55 +95,10 @@ export default class MapScreen extends Component {
 
       }
 
-      handleButton = () => {
+      
 
-        if(this.state.originText != '') {
-
-            Geocoder.init(GOOGLE_MAPS_APIKEY); // use a valid API key
-
-            Geocoder.from(this.state.originText)
-                .then(json => {
-                    var location = json.results[0].geometry.location;
-                    console.log(location);
-                    this.setState({ origin: { latitude: location.lat, longitude: location.lng } });
-
-            })
-            .catch(error => console.warn(error));
-
-        }
-
-        else {
-
-            alert("Digite a origem ! ")
-
-        }
-
-        if(this.state.destinationText != '') {
-
-            Geocoder.init(GOOGLE_MAPS_APIKEY); // use a valid API key
-
-            Geocoder.from(this.state.destinationText)
-            .then(json => {
-                var location = json.results[0].geometry.location;
-                console.log(location);
-                this.setState({ destination: { latitude: location.lat, longitude: location.lng } });
-
-            })
-            .catch(error => console.warn(error));
-        }
-
-        else {
-
-            alert("Digite o destino ! ")
-
-        }
-
-      }
-    
       handleGetGoogleMapDirections = () => {
-    
         const data = {
-    
             source: this.state.origin,
             destination: this.state.destination,
             params: [
@@ -154,16 +109,11 @@ export default class MapScreen extends Component {
             ]
             
         };
-    
         getDirections(data)
     
       };
-
     render() {
-
         return(
-
-            
             <View>
 
                 {(this.props.type != "addEvent") ? (
@@ -195,18 +145,32 @@ export default class MapScreen extends Component {
                     
                   </MapView.Marker>
                   
-                  {this.props.events.map(event => (
-                    <MapView.Marker
-                      image={require('../assets/iconsPack/event.png')}
-                      title={`${event.nome} | ${event.userId}`}
-                      description={`${event.descricao}`}
-                      coordinate={event.location}
-                    >
-    
-                    </MapView.Marker>
-                  ))}
+                  {this.props.events.map(event => {
+                      
+                      if(event.isActive){
+                        return (<MapView.Marker
+                            image={require('../assets/iconsPack/event-active.png')}
+                            title={`${event.nome} | You!`}
+                            description={`${event.descricao}`}
+                            coordinate={event.location}
+                        >
+      
+                        </MapView.Marker>)
+                      }else{
+                        return(
+                          <MapView.Marker
+                            image={require('../assets/iconsPack/event.png')}
+                            title={`${event.nome} | ${event.userId}`}
+                            description={`${event.descricao}`}
+                            coordinate={event.location}
+                          >
+          
+                          </MapView.Marker>
+                          )
+                      }
+
+                  })}
                   
-    
                   <MapViewDirections
                     origin={this.state.origin}
                     destination={this.state.destination}
@@ -227,7 +191,6 @@ export default class MapScreen extends Component {
                       latitudeDelta: Math.abs(this.state.origin.latitude) * .0002,
                       longitudeDelta: Math.abs(this.state.origin.longitude) * .0002,
                     }}
-          
                     loadingEnabled={true}
                     toolbarEnabled={true}
                     zoomControlEnabled={true}
@@ -243,23 +206,14 @@ export default class MapScreen extends Component {
                   >
                     
                   </MapView.Marker>
-                  
-                  
-                  
-    
+
                   <MapViewDirections
                     origin={this.state.origin}
                     destination={this.state.destination}
                     apikey={GOOGLE_MAPS_APIKEY}
                   />
-          
                   </MapView>
                 )}
-
-              
-
-              
-
           </View>
 
         );

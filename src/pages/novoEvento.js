@@ -48,8 +48,6 @@ export default (props) => {
     }
 
     const inserirEvento = async () => {
-        
-
         if(isEmptyState()){
             alert('Preencha todos os campos')    
         }else{
@@ -226,7 +224,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        paddingTop: 30,
         paddingHorizontal: 10
     },
     textInput: {
@@ -234,7 +231,6 @@ const styles = StyleSheet.create({
     },
     mapScroll: {
         marginTop: 80,
-        paddingTop: 35,
         backgroundColor: '#424242'
     },
     formContent: {
