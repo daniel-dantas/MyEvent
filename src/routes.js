@@ -1,10 +1,16 @@
+import React from 'react'
+
 import {
     createStackNavigator,
 }from 'react-navigation'
 
 import {
-    createBottomTabNavigator
+    createBottomTabNavigator,
 }from 'react-navigation-tabs'
+
+import {
+    Icon
+}from 'react-native-elements'
 
 // Pages do APP
 import Login from './pages/login'
@@ -19,9 +25,14 @@ const telasLogado = {
         screen: Home,
         navigationOptions: ({navigation}) => ({
             tabBarLabel: 'Home',
+            tabBarIcon: () => (
+                <Icon name="home" type="material" color="#fff"/>
+            ),
             tabBarOptions: {
+                iconShow: true,
                 activeTintColor: '#fff',
-                style: {
+                inactiveTintColor: '#fff',
+                style: { 
                     backgroundColor: '#424242'
                 }
             }
@@ -31,14 +42,19 @@ const telasLogado = {
         screen: MeusEventos,
         navigationOptions: ({navigation}) => ({
             tabBarLabel: 'Meus Eventos',
+            tabBarIcon: () => (
+                <Icon name="explore" type="material" color="#fff"/>
+            ),
             tabBarOptions: {
+                iconShow: true,
                 activeTintColor: '#fff',
+                inactiveTintColor: '#fff',
                 style: { 
                     backgroundColor: '#424242'
                 }
             }
         })
-    }
+    },
 }
 
 export default createStackNavigator({
