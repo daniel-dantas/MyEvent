@@ -31,7 +31,7 @@ const telasLogado = {
             tabBarOptions: {
                 iconShow: true,
                 activeTintColor: '#fff',
-                inactiveTintColor: '#fff',
+                inactiveTintColor: '#abc',
                 style: { 
                     backgroundColor: '#424242'
                 }
@@ -48,7 +48,7 @@ const telasLogado = {
             tabBarOptions: {
                 iconShow: true,
                 activeTintColor: '#fff',
-                inactiveTintColor: '#fff',
+                inactiveTintColor: '#abc',
                 style: { 
                     backgroundColor: '#424242'
                 }
