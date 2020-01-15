@@ -72,7 +72,7 @@ export default function login(props) {
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.button} onPress={() => {login()}}>
-                <Text style={styles.buttonText}>Logar</Text>
+                <Text style={styles.buttonText}>Entrar</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.linkCadastrar} onPress={() => {props.navigation.navigate('Cadastrar')}}>
