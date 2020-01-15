@@ -2,21 +2,13 @@ import React, { Component } from 'react';
 
 import {
   View,
-  Dimensions,
   StyleSheet
 } from 'react-native';
 
 import MapView from 'react-native-maps';
-import MapViewDirections from 'react-native-maps-directions';
-import getDirections from 'react-native-google-maps-directions'
 import { PermissionsAndroid } from 'react-native';
-import {GOOGLE_MAPS_APIKEY} from '../config/maps_api'
-import Geocoder from 'react-native-geocoding';
 
 
-const backgroundColor = '#007256';
-
-const { height, width } = Dimensions.get('window');
 
 export default class MapScreen extends Component {
 
@@ -109,7 +101,6 @@ export default class MapScreen extends Component {
             ]
             
         };
-        getDirections(data)
     
       };
     render() {
@@ -175,11 +166,7 @@ export default class MapScreen extends Component {
 
                   })}
                   
-                  <MapViewDirections
-                    origin={this.state.origin}
-                    destination={this.state.destination}
-                    apikey={GOOGLE_MAPS_APIKEY}
-                  />
+                
           
                   </MapView>
                 ) : (
@@ -211,11 +198,7 @@ export default class MapScreen extends Component {
                     
                   </MapView.Marker>
 
-                  <MapViewDirections
-                    origin={this.state.origin}
-                    destination={this.state.destination}
-                    apikey={GOOGLE_MAPS_APIKEY}
-                  />
+                  
                   </MapView>
                 )}
           </View>
