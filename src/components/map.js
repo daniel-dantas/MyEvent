@@ -33,18 +33,15 @@ export default class MapScreen extends Component {
             const granted = await PermissionsAndroid.request(
                 PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
                 {
-                    'title': 'App Location Permission',
-                    'message': 'Maps App needs access to your map ' +
-                        'so you can be navigated.'
+                    'title': 'Permissão de localização',
+                    'message': 'Permita o acesso de localização'
                 }
             );
     
             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-                console.log("You can use the location");
                 return true;
     
             } else {
-                console.log("location permission denied");
                 return false;
             }
     
